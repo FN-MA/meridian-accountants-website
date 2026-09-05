@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meridian Accountants | Chartered Accountants, Southampton</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:       #F5F0E8;
+      --cream-dark:  #EDE6D8;
+      --gold:        #B8922A;
+      --gold-light:  #D4A93A;
+      --gold-deep:   #8C6E1E;
+      --green:       #4A6741;
+      --green-light: #6B8F62;
+      --charcoal:    #2C2415;
+      --text:        #3A2E18;
+      --text-muted:  #6B5A3A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(245,240,232,0.96);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(184,146,42,0.25);
+      padding: 0 5vw;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 68px;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      text-decoration: none;
+    }
+    .nav-brand-text-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .nav-brand-text {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--gold-deep);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .nav-frill {
+      color: var(--gold);
+      font-size: 0.65rem;
+      opacity: 0.85;
+      transform: translateY(-1px);
+    }
+    .nav-brand-underline {
+      width: 78%;
+      height: 1px;
+      background: var(--gold);
+      opacity: 0.7;
+      margin-top: 3px;
+    }
+    .nav-logo-img {
+      height: 42px;
+      width: auto;
+      display: block;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 640px;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 140px 5vw 90px;
+      position: relative;
+      overflow: hidden;
+    }
+    #hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, rgba(184,146,42,0.07) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 0% 60%, rgba(74,103,65,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 100% 60%, rgba(74,103,65,0.06) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-ornament {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      margin-bottom: 2.5rem;
+      opacity: 0.8;
+    }
+    .hero-ornament::before,
+    .hero-ornament::after {
+      content: '—';
+      margin: 0 1rem;
+      opacity: 0.5;
+    }
+
+    .hero-logo-img {
+      width: min(380px, 72vw);
+      margin-bottom: 2.5rem;
+      filter: drop-shadow(0 4px 24px rgba(184,146,42,0.15));
+    }
+
+    #hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 600;
+      color: var(--gold-deep);
+      letter-spacing: 0.06em;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+    }
+
+    #hero p.hero-sub {
+      font-family: 'EB Garamond', serif;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      font-style: italic;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 1rem 2.5rem;
+      border-radius: 0;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--cream);
+      border: 1px solid var(--gold);
+    }
+    .btn-primary:hover {
+      background: var(--gold-deep);
+      border-color: var(--gold-deep);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      margin-left: 1rem;
+    }
+    .btn-outline:hover {
+      background: var(--gold);
+      color: var(--cream);
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      display: flex; align-items: center; gap: 1.25rem;
+      margin: 0 auto;
+      max-width: 200px;
+    }
+    .divider::before, .divider::after {
+      content: ''; flex: 1;
+      height: 1px; background: var(--gold);
+      opacity: 0.45;
+    }
+    .divider span {
+      color: var(--gold);
+      font-size: 1.1rem;
+      opacity: 0.7;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 100px 5vw; }
+
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+
+    .section-label {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 600;
+      color: var(--gold-deep);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .gold-rule {
+      width: 48px; height: 2px;
+      background: var(--gold);
+      margin-bottom: 2rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--cream); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+    }
+
+    .credential-box {
+      border: 1px solid rgba(184,146,42,0.3);
+      background: linear-gradient(135deg, rgba(184,146,42,0.04), rgba(74,103,65,0.04));
+      padding: 2rem 2.25rem;
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      margin-top: 2rem;
+    }
+    .credential-icon {
+      font-size: 2rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .credential-box h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--gold-deep);
+      margin-bottom: 0.3rem;
+    }
+    .credential-box p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+
+    .about-visual {
+      display: flex; flex-direction: column; gap: 1.5rem;
+    }
+    .stat-card {
+      border-left: 3px solid var(--gold);
+      padding: 1.25rem 1.75rem;
+      background: var(--cream-dark);
+    }
+    .stat-card .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .stat-card .stat-label {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--cream-dark); }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5px;
+      background: rgba(184,146,42,0.18);
+      border: 1px solid rgba(184,146,42,0.18);
+      margin-top: 3.5rem;
+    }
+
+    .service-card {
+      background: var(--cream);
+      padding: 2.5rem 2rem;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 100%; height: 2px;
+      background: var(--gold);
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .service-card:hover::after { transform: scaleX(1); }
+    .service-card:hover { background: #FAF7F0; }
+
+    .service-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--gold-deep);
+      margin-bottom: 0.75rem;
+    }
+    .service-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ── WHY US ── */
+    #why { background: var(--charcoal); }
+    #why .section-label { color: var(--gold-light); }
+    #why .section-title { color: var(--cream); }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3rem;
+      margin-top: 3.5rem;
+    }
+    .pillar {
+      border-top: 1px solid rgba(184,146,42,0.4);
+      padding-top: 2rem;
+    }
+    .pillar-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: rgba(184,146,42,0.25);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .pillar h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      margin-bottom: 0.75rem;
+    }
+    .pillar p {
+      font-size: 0.95rem;
+      color: rgba(245,240,232,0.65);
+      line-height: 1.7;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--cream); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 6rem;
+      align-items: start;
+    }
+
+    .contact-info h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--gold-deep);
+      margin-bottom: 1.5rem;
+    }
+    .contact-detail {
+      display: flex; gap: 1rem; align-items: flex-start;
+      margin-bottom: 1.25rem;
+    }
+    .contact-detail .ci {
+      font-size: 1.1rem; flex-shrink: 0; margin-top: 0.1rem;
+    }
+    .contact-detail p {
+      font-size: 0.97rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+    .contact-detail strong {
+      display: block;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+    }
+
+    /* FORM */
+    .contact-form {
+      border: 1px solid rgba(184,146,42,0.25);
+      padding: 3rem;
+      background: var(--cream-dark);
+    }
+    .contact-form h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--gold-deep);
+      margin-bottom: 0.5rem;
+    }
+    .contact-form .form-sub {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-bottom: 2rem;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label {
+      display: block;
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--cream);
+      border: 1px solid rgba(184,146,42,0.3);
+      padding: 0.85rem 1rem;
+      font-family: 'EB Garamond', serif;
+      font-size: 1rem;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.25s;
+      border-radius: 0;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--gold);
+    }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8922A' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+
+    .service-group { margin-bottom: 1rem; }
+    .service-group-label {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-deep);
+      margin-bottom: 0.6rem;
+    }
+    .service-options { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .service-options .service-option {
+      display: flex; align-items: center; gap: 0.7rem;
+      border: 1px solid rgba(184,146,42,0.3);
+      padding: 0.6rem 1rem;
+      font-family: 'EB Garamond', serif;
+      font-size: 0.92rem;
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: normal;
+      color: var(--text);
+      cursor: pointer;
+      transition: border-color 0.25s, background 0.25s;
+    }
+    .service-options .service-option:hover { border-color: var(--gold); }
+    .service-options .service-option input[type="checkbox"] {
+      -webkit-appearance: checkbox;
+      appearance: checkbox;
+      width: 16px; height: 16px; margin: 0 2px 0 0; accent-color: var(--gold-deep); cursor: pointer;
+      flex-shrink: 0;
+    }
+    .service-options .service-option span { line-height: 1; }
+    .service-options .service-option:has(input:checked) {
+      border-color: var(--gold-deep);
+      background: rgba(184,146,42,0.08);
+    }
+
+    .form-submit { margin-top: 0.5rem; }
+    .form-submit .btn { width: 100%; text-align: center; border: none; }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+    }
+    .form-success .check {
+      font-size: 2.5rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .form-success h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--gold-deep);
+      margin-bottom: 0.5rem;
+    }
+    .form-success p { color: var(--text-muted); font-style: italic; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--charcoal);
+      padding: 3rem 5vw;
+      text-align: center;
+    }
+    footer .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      margin-bottom: 0.75rem;
+    }
+    footer p {
+      font-size: 0.85rem;
+      color: rgba(245,240,232,0.45);
+      line-height: 1.8;
+    }
+    footer .footer-rule {
+      width: 40px; height: 1px;
+      background: rgba(184,146,42,0.4);
+      margin: 1.25rem auto;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 1024px) {
+      .pillars { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0 1.25rem; }
+      .nav-links { gap: 1.5rem; }
+      .nav-links a { font-size: 0.7rem; }
+      .about-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .pillars { grid-template-columns: 1fr; gap: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form { padding: 2rem 1.5rem; }
+      .btn-outline { margin-left: 0; margin-top: 0.75rem; }
+    }
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .nav-brand-text { font-size: 0.85rem; gap: 0.3rem; }
+      .nav-logo-img { height: 32px; }
+      .nav-brand { gap: 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-brand">
+    <span class="nav-brand-text-wrap">
+      <span class="nav-brand-text">
+        <span class="nav-frill">❧</span>
+        Meridian Accountants
+        <span class="nav-frill">❧</span>
+      </span>
+      <span class="nav-brand-underline"></span>
+    </span>
+    <img src="PHOTO-2026-06-11-18-07-32.jpg" alt="Meridian Accountants crest" class="nav-logo-img" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-ornament">Meridian Chartered Accountants</div>
+  <h1>Financial Clarity,<br/>Expertly Delivered</h1>
+  <p class="hero-sub">Professional accounting services for individuals and businesses across Southampton and beyond.</p>
+  <div>
+    <a href="#contact" class="btn btn-primary">Request a Consultation</a>
+    <a href="#services" class="btn btn-outline">Our Services</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">About the Firm</div>
+        <h2 class="section-title">Built on Expertise,<br/>Guided by Integrity</h2>
+        <div class="gold-rule"></div>
+        <p>Meridian Accountants was founded by Farid Nasri on a simple, personal conviction: providing genuine financial expertise to businesses without the price tag that comes with it. We are an ambitious firm, and we want to work with ambitious, growing clients — not just at month-end or year-end, but to be involved in your business day to day, understanding what's happening as it happens to be able to advise you in real time.</p>
+        <p>Farid is an ACA qualified Chartered Accountant, holding the prestigious designation awarded by the Institute of Chartered Accountants in England and Wales (ICAEW). This rigorous qualification — and our ongoing regulation by the ICAEW — means you can engage our services with complete confidence in our professional standards and ethical commitments.</p>
+        <p>Whether you are a sole trader just starting out, a growing SME, or an established company seeking a more personal service, we bring the same dedication and expertise to every engagement.</p>
+      </div>
+
+      <div class="about-visual">
+        <div class="stat-card">
+          <div class="stat-num">ACA</div>
+          <div class="stat-label">Chartered Accountant Qualification</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">ICAEW</div>
+          <div class="stat-label">Regulated &amp; Authorised</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Personalised, Partner-Led Service</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-num">SO14</div>
+          <div class="stat-label">Proudly Based in Southampton</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Our Services</h2>
+    <div class="gold-rule"></div>
+    <p style="color:var(--text-muted); max-width:580px;">From day-to-day bookkeeping to strategic tax planning, we provide the full range of accounting services your business needs to thrive.</p>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <span class="service-icon">📒</span>
+        <h3>Bookkeeping</h3>
+        <p>Accurate, up-to-date records that give you a clear picture of your financial position. We handle your day-to-day transactions so you can focus on running your business.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">💷</span>
+        <h3>Payroll</h3>
+        <p>Fully managed payroll processing, including RTI submissions, PAYE, and employee payslips. We ensure your team is paid accurately and on time, every time.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📋</span>
+        <h3>Tax Returns</h3>
+        <p>Self Assessment tax returns prepared and submitted with care, maximising your legitimate allowances and reliefs while ensuring full HMRC compliance.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏢</span>
+        <h3>Company Accounts</h3>
+        <p>Statutory year-end accounts prepared to the highest standard and filed with Companies House and HMRC, meeting all legal obligations for limited companies.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📊</span>
+        <h3>VAT Returns</h3>
+        <p>Preparation and submission of VAT returns, including MTD-compliant filings. We manage your VAT obligations and identify planning opportunities to improve cashflow.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏗️</span>
+        <h3>Company Formation</h3>
+        <p>Guidance on the right structure for your new venture, plus full company incorporation, registered address services, and initial compliance setup.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📈</span>
+        <h3>Management Accounts</h3>
+        <p>Regular management accounts that give you the financial intelligence to make confident decisions, monitor performance, and plan for growth.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔍</span>
+        <h3>Tax Planning</h3>
+        <p>Proactive advice to structure your affairs in the most tax-efficient way — from dividend planning and capital allowances to pension contributions and beyond.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🤝</span>
+        <h3>Business Advisory</h3>
+        <p>Strategic guidance on cash flow, budgeting, funding, and business planning. We act as a trusted sounding board at every stage of your business journey.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="section-inner">
+    <div class="section-label">The Meridian Difference</div>
+    <h2 class="section-title">Why Choose Us</h2>
+    <div class="gold-rule" style="background:rgba(184,146,42,0.5);"></div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-num">I</div>
+        <h3>Chartered Excellence</h3>
+        <p>As an ACA qualified and ICAEW regulated firm, we are held to the highest ethical and technical standards in the industry. Your finances are in safe, qualified hands.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">II</div>
+        <h3>Personal Attention</h3>
+        <p>You will always deal directly with your accountant — not a junior or a call centre. We invest the time to understand your business and your goals.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">III</div>
+        <h3>Transparent Pricing</h3>
+        <p>Clear, agreed fees with no hidden surprises and no overcharging — pricing reflects the work, not your cash flow pressure. We discuss the scope of work upfront so you always know exactly what you are paying for and why.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">IV</div>
+        <h3>Giving Back</h3>
+        <p>We believe good business should benefit the wider community. Meridian Accountants donates 10% of profits to charity every year.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-label">Get in Touch</div>
+        <h2 class="section-title">Start the Conversation</h2>
+        <div class="gold-rule"></div>
+        <p style="color:var(--text-muted); margin-bottom:2.5rem; font-style:italic;">We would be delighted to discuss how we can support you. Complete the form and a member of our team will be in touch within one business day.</p>
+
+        <div class="contact-detail">
+          <span class="ci">📍</span>
+          <p>
+            <strong>Registered Address</strong>
+            Flat 20 Seafarers Court<br/>
+            12–14 Queens Terrace<br/>
+            Southampton, SO14 3SG
+          </p>
+        </div>
+        <div class="contact-detail">
+          <span class="ci">📞</span>
+          <p>
+            <strong>Phone</strong>
+            +44 (0) 74012 48669
+          </p>
+        </div>
+        <div class="contact-detail">
+          <span class="ci">✉️</span>
+          <p>
+            <strong>Email</strong>
+            fn@meridian-accountants.com
+          </p>
+        </div>
+        <div class="contact-detail">
+          <span class="ci">🕐</span>
+          <p>
+            <strong>Office Hours</strong>
+            Monday – Friday: 9:00am – 5:30pm<br/>
+            Appointments available outside of these hours on request
+          </p>
+        </div>
+
+        <div style="margin-top:2rem; padding:1.25rem 1.5rem; border:1px solid rgba(74,103,65,0.3); background:rgba(74,103,65,0.04);">
+          <p style="font-size:0.88rem; color:var(--green); font-family:'Raleway',sans-serif; font-weight:500; letter-spacing:0.05em;">
+            🏛️ <strong>ICAEW Regulated</strong> — Our services are regulated by the Institute of Chartered Accountants in England and Wales. Firm Reference Number: C011009760.
+          </p>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <div id="form-body">
+          <h3>Request a Consultation</h3>
+          <p class="form-sub">Tell us a little about yourself and what you need — we'll do the rest.</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="first-name">First Name *</label>
+              <input type="text" id="first-name" placeholder="e.g. Sarah" required />
+            </div>
+            <div class="form-group">
+              <label for="last-name">Last Name *</label>
+              <input type="text" id="last-name" placeholder="e.g. Thompson" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" placeholder="you@example.com" required />
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Phone Number *</label>
+            <input type="tel" id="phone" placeholder="e.g. 07700 900000" required />
+          </div>
+
+          <div class="form-group">
+            <label for="business-name">Business / Company Name</label>
+            <input type="text" id="business-name" placeholder="Leave blank if not applicable" />
+          </div>
+
+          <div class="form-group">
+            <label>Service of Interest *</label>
+
+            <div class="service-group">
+              <div class="service-group-label">Business Services</div>
+              <div class="service-options">
+                <label class="service-option"><input type="checkbox" name="service" value="Bookkeeping" /><span>Bookkeeping</span></label>
+                <label class="service-option"><input type="checkbox" name="service" value="Payroll" /><span>Payroll</span></label>
+                <label class="service-option"><input type="checkbox" name="service" value="Company Accounts" /><span>Company Accounts</span></label>
+                <label class="service-option"><input type="checkbox" name="service" value="Management Accounts" /><span>Management Accounts</span></label>
+                <label class="service-option"><input type="checkbox" name="service" value="Tax Planning" /><span>Tax Planning</span></label>
+                <label class="service-option"><input type="checkbox" name="service" value="VAT Returns" /><span>VAT Returns</span></label>
+              </div>
+            </div>
+
+            <div class="service-group">
+              <div class="service-group-label">Personal Tax</div>
+              <div class="service-options">
+                <label class="service-option"><input type="checkbox" name="service" value="Self Assessment Tax Return" /><span>Self Assessment Tax Return</span></label>
+              </div>
+            </div>
+
+            <div class="service-group">
+              <div class="service-group-label">Advisory &amp; Setup</div>
+              <div class="service-options">
+                <label class="service-option"><input type="checkbox" name="service" value="Company Formation" /><span>Company Formation</span></label>
+                <label class="service-option"><input type="checkbox" name="service" value="Business Advisory" /><span>Business Advisory</span></label>
+              </div>
+            </div>
+
+            <div class="service-group">
+              <div class="service-group-label">General</div>
+              <div class="service-options">
+                <label class="service-option"><input type="checkbox" name="service" value="General Enquiry" /><span>General Enquiry</span></label>
+                <label class="service-option"><input type="checkbox" name="service" value="Pricing Enquiry" /><span>Pricing Enquiry</span></label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">How Can We Help? *</label>
+            <p style="font-family:'EB Garamond',serif; font-size:0.85rem; font-style:italic; color:var(--text-muted); margin:-0.35rem 0 0.6rem;">
+              Helpful to include, where relevant: your approximate turnover (or gross income if a sole trader); if you need payroll, how many employees and how often they're paid; and how long the business has been trading.
+            </p>
+            <textarea id="message" placeholder="Please give us a brief overview of your situation and what you're looking for..." required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-pref">Preferred Contact Method</label>
+            <select id="contact-pref">
+              <option value="">— No preference —</option>
+              <option>Email</option>
+              <option>Phone call</option>
+            </select>
+          </div>
+
+          <div class="form-submit">
+            <button class="btn btn-primary" onclick="submitForm()">Send Enquiry</button>
+          </div>
+        </div>
+
+        <div class="form-success" id="form-success">
+          <span class="check">✦</span>
+          <h4>Thank you for reaching out.</h4>
+          <p>We have received your enquiry and will be in touch within one business day.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-brand">Meridian Accountants</div>
+  <div class="footer-rule"></div>
+  <p>
+    Flat 20 Seafarers Court, 12–14 Queens Terrace, Southampton, SO14 3SG<br/>
+    Regulated by the Institute of Chartered Accountants in England and Wales (ICAEW) — Firm Reference Number: C011009760<br/><br/>
+    &copy; 2026 Meridian Accountants. All rights reserved.
+  </p>
+</footer>
+
+<script>
+  // Smooth scroll offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  async function submitForm() {
+    const first = document.getElementById('first-name').value.trim();
+    const last  = document.getElementById('last-name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+    const business = document.getElementById('business-name').value.trim();
+    const serviceChecks = document.querySelectorAll('input[name="service"]:checked');
+    const service = Array.from(serviceChecks).map(cb => cb.value).join(', ');
+    const msg   = document.getElementById('message').value.trim();
+    const contactPref = document.getElementById('contact-pref').value;
+
+    if (!first || !last || !email || !phone || !msg) {
+      alert('Please complete the required fields (marked with *) before submitting.');
+      return;
+    }
+    if (serviceChecks.length === 0) {
+      alert('Please select at least one service you are interested in.');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      alert('Please enter a valid email address.');
+      return;
+    }
+
+    const submitBtn = document.querySelector('#form-body .btn-primary');
+    const originalLabel = submitBtn.textContent;
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: 'a2717147-646c-4b31-9926-2094ec5556fe',
+          subject: `New website enquiry from ${first} ${last}`,
+          from_name: `${first} ${last}`,
+          name: `${first} ${last}`,
+          email: email,
+          phone: phone || 'Not provided',
+          business_name: business || 'Not provided',
+          service_of_interest: service || 'Not specified',
+          preferred_contact_method: contactPref || 'No preference',
+          message: msg
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        document.getElementById('form-body').style.display = 'none';
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        alert('Something went wrong sending your enquiry. Please try again or email us directly.');
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalLabel;
+      }
+    } catch (err) {
+      alert('Something went wrong sending your enquiry. Please check your connection and try again.');
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalLabel;
+    }
+  }
+</script>
+
+</body>
+</html>
