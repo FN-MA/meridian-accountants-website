@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Meridian Accountants</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:       #F5F0E8;
+      --cream-dark:  #EDE6D8;
+      --gold:        #B8922A;
+      --gold-light:  #D4A93A;
+      --gold-deep:   #8C6E1E;
+      --green:       #4A6741;
+      --green-light: #6B8F62;
+      --charcoal:    #2C2415;
+      --text:        #3A2E18;
+      --text-muted:  #6B5A3A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+    }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 5vw;
+      border-bottom: 1px solid rgba(184,146,42,0.25);
+    }
+    .nav-brand { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; }
+    .nav-brand-text-wrap { display: flex; flex-direction: column; align-items: center; }
+    .nav-brand-text {
+      display: flex; align-items: center; gap: 0.45rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 600; color: var(--gold-deep);
+      letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap;
+    }
+    .nav-frill { color: var(--gold); font-size: 0.65rem; opacity: 0.85; transform: translateY(-1px); }
+    .nav-brand-underline { width: 78%; height: 1px; background: var(--gold); opacity: 0.7; margin-top: 3px; }
+    .nav-logo-img { height: 42px; width: auto; display: block; }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted); text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+    main { max-width: 740px; margin: 0 auto; padding: 5rem 5vw 8rem; }
+
+    .back-link {
+      display: inline-block; margin-bottom: 2.5rem;
+      font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold-deep);
+      text-decoration: none;
+    }
+    .back-link:hover { color: var(--gold); }
+
+    .post-date {
+      font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .post-title {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4.5vw, 2.9rem);
+      font-weight: 600; color: var(--gold-deep); line-height: 1.2; margin-bottom: 2.5rem;
+    }
+
+    .post-body { font-size: 1.1rem; line-height: 1.8; }
+    .post-body p { margin-bottom: 1.4rem; }
+    .post-body h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600;
+      color: var(--gold-deep); margin: 2.2rem 0 1rem;
+    }
+    .post-body h3 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 600;
+      color: var(--text); margin: 1.8rem 0 0.8rem;
+    }
+    .post-body ul, .post-body ol { margin: 0 0 1.4rem 1.4rem; }
+    .post-body li { margin-bottom: 0.5rem; }
+    .post-body a { color: var(--gold-deep); }
+    .post-body img { max-width: 100%; height: auto; margin: 1.5rem 0; }
+    .post-body strong { color: var(--gold-deep); }
+
+    .state-msg { text-align: center; color: var(--text-muted); font-style: italic; padding: 3rem 0; }
+
+    footer {
+      text-align: center; padding: 3rem 5vw; border-top: 1px solid rgba(184,146,42,0.25);
+    }
+    footer a { color: var(--gold-deep); text-decoration: none; font-family: 'Raleway', sans-serif; font-size: 0.85rem; }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">
+    <span class="nav-brand-text-wrap">
+      <span class="nav-brand-text">
+        <span class="nav-frill">❧</span>
+        Meridian Accountants
+        <span class="nav-frill">❧</span>
+      </span>
+      <span class="nav-brand-underline"></span>
+    </span>
+    <img src="/PHOTO-2026-06-11-18-07-32.jpg" alt="Meridian Accountants crest" class="nav-logo-img" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#why">Why Us</a></li>
+    <li><a href="/blog/" class="active">Blog</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+  <a class="back-link" href="/blog/">&larr; All Posts</a>
+  <div id="post-content">
+    <p class="state-msg">Loading&hellip;</p>
+  </div>
+</main>
+
+<footer>
+  <a href="/">&larr; Back to Meridian Accountants</a>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/9.1.6/marked.min.js"></script>
+<script>
+  const REPO = 'FN-MA/meridian-accountants-website';
+  const BRANCH = 'main';
+  const POSTS_PATH = 'Website docs v2/content/posts';
+
+  function parseFrontmatter(raw) {
+    const match = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
+    if (!match) return { data: {}, body: raw };
+    const [, fmBlock, body] = match;
+    const data = {};
+    fmBlock.split('\n').forEach(line => {
+      const idx = line.indexOf(':');
+      if (idx === -1) return;
+      const key = line.slice(0, idx).trim();
+      let val = line.slice(idx + 1).trim();
+      val = val.replace(/^["']|["']$/g, '');
+      data[key] = val;
+    });
+    return { data, body: body.trim() };
+  }
+
+  function formatDate(d) {
+    const date = new Date(d);
+    if (isNaN(date)) return d;
+    return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  async function loadPost() {
+    const params = new URLSearchParams(window.location.search);
+    const slug = params.get('slug');
+    const contentEl = document.getElementById('post-content');
+
+    if (!slug) {
+      contentEl.innerHTML = '<p class="state-msg">No post specified.</p>';
+      return;
+    }
+
+    try {
+      const url = `https://raw.githubusercontent.com/${REPO}/${BRANCH}/${encodeURIComponent(POSTS_PATH)}/${encodeURIComponent(slug)}.md`;
+      const res = await fetch(url);
+      if (!res.ok) {
+        contentEl.innerHTML = '<p class="state-msg">Sorry, that post could not be found.</p>';
+        return;
+      }
+      const raw = await res.text();
+      const { data, body } = parseFrontmatter(raw);
+
+      document.title = (data.title || 'Blog') + ' | Meridian Accountants';
+
+      const bodyHtml = window.marked ? marked.parse(body) : body;
+
+      contentEl.innerHTML = `
+        ${data.date ? `<div class="post-date">${formatDate(data.date)}</div>` : ''}
+        <h1 class="post-title">${data.title || ''}</h1>
+        <div class="post-body">${bodyHtml}</div>
+      `;
+    } catch (err) {
+      contentEl.innerHTML = '<p class="state-msg">Unable to load this post right now &mdash; please try again shortly.</p>';
+    }
+  }
+
+  loadPost();
+</script>
+
+</body>
+</html>

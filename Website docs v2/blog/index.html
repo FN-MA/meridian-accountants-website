@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Meridian Accountants</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:       #F5F0E8;
+      --cream-dark:  #EDE6D8;
+      --gold:        #B8922A;
+      --gold-light:  #D4A93A;
+      --gold-deep:   #8C6E1E;
+      --green:       #4A6741;
+      --green-light: #6B8F62;
+      --charcoal:    #2C2415;
+      --text:        #3A2E18;
+      --text-muted:  #6B5A3A;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--text);
+      font-family: 'EB Garamond', Georgia, serif;
+    }
+
+    nav {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.5rem 5vw;
+      border-bottom: 1px solid rgba(184,146,42,0.25);
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 0.7rem; text-decoration: none;
+    }
+    .nav-brand-text-wrap { display: flex; flex-direction: column; align-items: center; }
+    .nav-brand-text {
+      display: flex; align-items: center; gap: 0.45rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 600; color: var(--gold-deep);
+      letter-spacing: 0.12em; text-transform: uppercase; white-space: nowrap;
+    }
+    .nav-frill { color: var(--gold); font-size: 0.65rem; opacity: 0.85; transform: translateY(-1px); }
+    .nav-brand-underline { width: 78%; height: 1px; background: var(--gold); opacity: 0.7; margin-top: 3px; }
+    .nav-logo-img { height: 42px; width: auto; display: block; }
+
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-family: 'Raleway', sans-serif;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--text-muted); text-decoration: none;
+      transition: color 0.25s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--gold); }
+
+    main { max-width: 900px; margin: 0 auto; padding: 5rem 5vw 8rem; }
+
+    .blog-header { text-align: center; margin-bottom: 4rem; }
+    .blog-kicker {
+      font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .blog-header h1 {
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 600; color: var(--gold-deep);
+    }
+
+    .post-card {
+      display: block; text-decoration: none; color: inherit;
+      border-top: 1px solid rgba(184,146,42,0.3);
+      padding: 2.25rem 0;
+      transition: opacity 0.25s;
+    }
+    .post-card:hover { opacity: 0.75; }
+    .post-date {
+      font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold);
+      margin-bottom: 0.5rem;
+    }
+    .post-card h2 {
+      font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 600;
+      color: var(--text); margin-bottom: 0.6rem;
+    }
+    .post-card p { color: var(--text-muted); line-height: 1.6; }
+
+    .state-msg {
+      text-align: center; color: var(--text-muted); font-style: italic; padding: 3rem 0;
+    }
+
+    footer {
+      text-align: center; padding: 3rem 5vw; border-top: 1px solid rgba(184,146,42,0.25);
+    }
+    footer a { color: var(--gold-deep); text-decoration: none; font-family: 'Raleway', sans-serif; font-size: 0.85rem; }
+
+    @media (max-width: 700px) {
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-brand">
+    <span class="nav-brand-text-wrap">
+      <span class="nav-brand-text">
+        <span class="nav-frill">❧</span>
+        Meridian Accountants
+        <span class="nav-frill">❧</span>
+      </span>
+      <span class="nav-brand-underline"></span>
+    </span>
+    <img src="/PHOTO-2026-06-11-18-07-32.jpg" alt="Meridian Accountants crest" class="nav-logo-img" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#about">About</a></li>
+    <li><a href="/#services">Services</a></li>
+    <li><a href="/#why">Why Us</a></li>
+    <li><a href="/blog/" class="active">Blog</a></li>
+    <li><a href="/#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<main>
+  <div class="blog-header">
+    <div class="blog-kicker">Insights &amp; Updates</div>
+    <h1>The Meridian Blog</h1>
+  </div>
+
+  <div id="post-list">
+    <p class="state-msg">Loading posts&hellip;</p>
+  </div>
+</main>
+
+<footer>
+  <a href="/">&larr; Back to Meridian Accountants</a>
+</footer>
+
+<script>
+  const REPO = 'FN-MA/meridian-accountants-website';
+  const BRANCH = 'main';
+  const POSTS_PATH = 'Website docs v2/content/posts';
+
+  function parseFrontmatter(raw) {
+    const match = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n?([\s\S]*)$/);
+    if (!match) return { data: {}, body: raw };
+    const [, fmBlock, body] = match;
+    const data = {};
+    fmBlock.split('\n').forEach(line => {
+      const idx = line.indexOf(':');
+      if (idx === -1) return;
+      const key = line.slice(0, idx).trim();
+      let val = line.slice(idx + 1).trim();
+      val = val.replace(/^["']|["']$/g, '');
+      data[key] = val;
+    });
+    return { data, body: body.trim() };
+  }
+
+  function formatDate(d) {
+    const date = new Date(d);
+    if (isNaN(date)) return d;
+    return date.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  async function loadPosts() {
+    const listEl = document.getElementById('post-list');
+    try {
+      const res = await fetch(`https://api.github.com/repos/${REPO}/contents/${encodeURIComponent(POSTS_PATH)}?ref=${BRANCH}`);
+      if (!res.ok) {
+        if (res.status === 404) {
+          listEl.innerHTML = '<p class="state-msg">No posts published yet &mdash; check back soon.</p>';
+          return;
+        }
+        throw new Error('GitHub API error ' + res.status);
+      }
+      const files = await res.json();
+      const mdFiles = files.filter(f => f.name.endsWith('.md'));
+
+      if (mdFiles.length === 0) {
+        listEl.innerHTML = '<p class="state-msg">No posts published yet &mdash; check back soon.</p>';
+        return;
+      }
+
+      const posts = await Promise.all(mdFiles.map(async file => {
+        const raw = await fetch(file.download_url).then(r => r.text());
+        const { data } = parseFrontmatter(raw);
+        return {
+          slug: file.name.replace(/\.md$/, ''),
+          title: data.title || file.name,
+          date: data.date || '',
+          excerpt: data.excerpt || ''
+        };
+      }));
+
+      posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      listEl.innerHTML = posts.map(p => `
+        <a class="post-card" href="/blog/post.html?slug=${encodeURIComponent(p.slug)}">
+          ${p.date ? `<div class="post-date">${formatDate(p.date)}</div>` : ''}
+          <h2>${p.title}</h2>
+          ${p.excerpt ? `<p>${p.excerpt}</p>` : ''}
+        </a>
+      `).join('');
+    } catch (err) {
+      listEl.innerHTML = '<p class="state-msg">Unable to load posts right now &mdash; please try again shortly.</p>';
+    }
+  }
+
+  loadPosts();
+</script>
+
+</body>
+</html>
