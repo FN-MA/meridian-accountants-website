@@ -1,5 +1,6 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: FN-MA/meridian-accountants-website
   branch: main
 
 media_folder: "Website docs v2/blog-images"
