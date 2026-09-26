@@ -1,0 +1,13 @@
+{
+  "name": "meridian-accountants-website",
+  "private": true,
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "marked": "^12.0.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

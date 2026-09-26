@@ -1,0 +1,22 @@
+backend:
+  name: github
+  repo: FN-MA/meridian-accountants-website
+  branch: main
+
+media_folder: "Website docs v2/blog-images"
+public_folder: "/blog-images"
+
+collections:
+  - name: "posts"
+    label: "Blog Posts"
+    folder: "Website docs v2/content/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: false, hint: "A short summary shown on the blog listing page." }
+      - { label: "Search description", name: "description", widget: "text", required: false, hint: "About 150 characters, shown in Google results. Leave blank to use the excerpt." }
+      - { label: "Last updated", name: "updated", widget: "datetime", format: "YYYY-MM-DD", required: false, hint: "Set this when you revise a post." }
+      - { label: "Featured Image", name: "image", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
