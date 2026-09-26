@@ -1,5 +1,4 @@
-# Netlify build settings (used when the site's base directory is the repository root).
+# Netlify build settings (used when the site's base directory is "Website docs v2").
 [build]
-  base = "Website docs v2"
   command = "npm run build"
   publish = "dist"

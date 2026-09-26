@@ -16,5 +16,7 @@ collections:
       - { label: "Title", name: "title", widget: "string" }
       - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
       - { label: "Excerpt", name: "excerpt", widget: "text", required: false, hint: "A short summary shown on the blog listing page." }
+      - { label: "Search description", name: "description", widget: "text", required: false, hint: "About 150 characters, shown in Google results. Leave blank to use the excerpt." }
+      - { label: "Last updated", name: "updated", widget: "datetime", format: "YYYY-MM-DD", required: false, hint: "Set this when you revise a post." }
       - { label: "Featured Image", name: "image", widget: "image", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
