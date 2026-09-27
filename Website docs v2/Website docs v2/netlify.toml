@@ -1,8 +1,0 @@
-# Netlify build settings (used when the site's base directory is "Website docs v2").
-[build]
-  command = "npm run build"
-  publish = "dist"
-  # Always build on every commit. Netlify's automatic "has anything changed?"
-  # check gets confused by the spaces in the folder name "Website docs v2"
-  # and wrongly cancels builds. The build takes under a minute, so always running it is fine.
-  ignore = "exit 1"
