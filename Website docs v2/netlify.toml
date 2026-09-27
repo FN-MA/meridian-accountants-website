@@ -3,3 +3,9 @@
   command = "npm run build"
   publish = "dist"
     ignore = "exit 1"
+
+       [[redirects]]
+     from = "https://meridian-accountants.netlify.app/*"
+     to = "https://meridian-accountants.com/:splat"
+     status = 301
+     force = true
