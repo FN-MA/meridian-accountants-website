@@ -14,7 +14,7 @@ const AUTHOR = {
   credentials: 'ACA, Chartered Accountant',
 };
 const HOME_DESCRIPTION =
-  'CAEW regulated Chartered Accountants in Southampton offering bookkeeping, accounts, tax and advisory services for individuals and businesses.';
+  'ICAEW regulated Chartered Accountants in Southampton offering bookkeeping, accounts, tax and advisory services for individuals and businesses.';
 
 const ROOT = __dirname;
 const OUT = path.join(ROOT, 'dist');
