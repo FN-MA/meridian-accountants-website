@@ -154,9 +154,9 @@ if (!/name="description"/i.test(home)) {
   fs.writeFileSync(homePath, home);
 }
 
-// Home page: "Latest from the blog" section with the 3 newest posts, placed before Contact.
+// Home page: "Latest from the blog" section with the 3 newest posts, placed straight after the hero.
 // It updates automatically whenever a post is added.
-if (posts.length && home.includes('<!-- CONTACT -->') && !home.includes('id="latest-posts"')) {
+if (posts.length && home.includes('<!-- WHY US -->') && !home.includes('id="latest-posts"')) {
   const latest = posts.slice(0, 3).map(p => `
         <a class="lp-card" href="${p.url}">
           ${p.date ? `<div class="lp-date">${esc(formatDate(p.date))}</div>` : ''}
@@ -167,29 +167,32 @@ if (posts.length && home.includes('<!-- CONTACT -->') && !home.includes('id="lat
   const section = `<!-- LATEST POSTS -->
 <section id="latest-posts">
   <style>
-    #latest-posts { background: var(--cream); border-bottom: 1px solid rgba(184,146,42,0.25); }
+    #latest-posts { background: var(--cream-dark); padding: 56px 5vw 64px; border-top: 1px solid rgba(184,146,42,0.25); }
+    .lp-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.75rem; }
+    .lp-head .section-title { font-size: clamp(1.5rem, 2.6vw, 2rem); margin-bottom: 0; }
     .lp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
-    .lp-card { display: flex; flex-direction: column; padding: 1.75rem; background: var(--cream-dark); border: 1px solid rgba(184,146,42,0.3); text-decoration: none; transition: border-color 0.25s, transform 0.25s; }
+    .lp-card { display: flex; flex-direction: column; padding: 1.5rem 1.75rem; background: var(--cream); border: 1px solid rgba(184,146,42,0.3); text-decoration: none; transition: border-color 0.25s, transform 0.25s; }
     .lp-card:hover { border-color: var(--gold); transform: translateY(-2px); }
     .lp-date { font-family: 'Raleway', sans-serif; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.6rem; }
     .lp-card h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; font-weight: 600; color: var(--gold-deep); line-height: 1.25; margin-bottom: 0.75rem; }
     .lp-card p { font-size: 0.97rem; color: var(--text-muted); line-height: 1.55; margin-bottom: 1.25rem; flex: 1; }
     .lp-more { font-family: 'Raleway', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-deep); }
-    .lp-all { display: inline-block; margin-top: 2rem; font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-deep); text-decoration: none; }
+    .lp-all { display: inline-block; font-family: 'Raleway', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-deep); text-decoration: none; }
     .lp-all:hover { color: var(--gold); }
   </style>
   <div class="section-inner">
     <div class="section-label">Insights &amp; Updates</div>
-    <h2 class="section-title">Latest from the Blog</h2>
-    <div class="gold-rule"></div>
+    <div class="lp-head">
+      <h2 class="section-title">Latest from the Blog</h2>
+      <a class="lp-all" href="/blog/">View all posts &rarr;</a>
+    </div>
     <div class="lp-grid">${latest}
     </div>
-    <a class="lp-all" href="/blog/">View all posts &rarr;</a>
   </div>
 </section>
 
-<!-- CONTACT -->`;
-  home = home.replace('<!-- CONTACT -->', section);
+<!-- WHY US -->`;
+  home = home.replace('<!-- WHY US -->', section);
   fs.writeFileSync(homePath, home);
 }
 
