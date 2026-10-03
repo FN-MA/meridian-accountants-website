@@ -19,7 +19,7 @@ const HOME_DESCRIPTION =
 const ROOT = __dirname;
 const OUT = path.join(ROOT, 'dist');
 const POSTS_DIR = path.join(ROOT, 'content', 'posts');
-const SKIP = new Set(['Website docs v2', 'dist', 'node_modules', 'content', 'build.js', 'package.json', 'package-lock.json', 'netlify.toml', '.git']);
+const SKIP = new Set(['Website docs v2', 'plugins', '.indexnow.json', 'dist', 'node_modules', 'content', 'build.js', 'package.json', 'package-lock.json', 'netlify.toml', '.git']);
 
 // ---------- helpers ----------
 
@@ -319,3 +319,23 @@ fs.writeFileSync(
 
 console.log(`Built ${posts.length} post(s) into dist/`);
 posts.forEach(p => console.log(`  ${p.url}`));
+
+// IndexNow: tells Bing (and Copilot, ChatGPT search, Yandex, etc.) about new or updated pages.
+// The key file must be public at the site root; the Netlify plugin in plugins/indexnow sends the
+// notification after each successful production deploy.
+const INDEXNOW_KEY = '58c59e50816a8b46dcc96ccae3e5a68c';
+fs.writeFileSync(path.join(OUT, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY);
+const RECENT_DAYS = 3;
+const cutoff = Date.now() - RECENT_DAYS * 24 * 60 * 60 * 1000;
+const recent = posts.filter(p => {
+  const t = new Date(p.updated || p.date).getTime();
+  return !isNaN(t) && t >= cutoff;
+});
+const pingUrls = recent.length
+  ? [`${SITE_URL}/`, `${SITE_URL}/blog/`, ...recent.map(p => `${SITE_URL}${p.url}`)]
+  : [];
+fs.writeFileSync(
+  path.join(ROOT, '.indexnow.json'),
+  JSON.stringify({ host: new URL(SITE_URL).host, key: INDEXNOW_KEY, keyLocation: `${SITE_URL}/${INDEXNOW_KEY}.txt`, urlList: pingUrls }, null, 2)
+);
+console.log(pingUrls.length ? `IndexNow: ${pingUrls.length} URL(s) queued` : 'IndexNow: no new or updated posts to submit');

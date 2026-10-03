@@ -2,10 +2,15 @@
 [build]
   command = "npm run build"
   publish = "dist"
-    ignore = "exit 1"
+  # Always build on every commit (Netlify's change check is confused by the spaces in the folder name).
+  ignore = "exit 1"
 
-       [[redirects]]
-     from = "https://meridian-accountants.netlify.app/*"
-     to = "https://meridian-accountants.com/:splat"
-     status = 301
-     force = true
+# Sends new and updated blog posts to Bing and other search engines after each deploy.
+[[plugins]]
+  package = "./plugins/indexnow"
+
+[[redirects]]
+  from = "https://meridian-accountants.netlify.app/*"
+  to = "https://meridian-accountants.com/:splat"
+  status = 301
+  force = true
