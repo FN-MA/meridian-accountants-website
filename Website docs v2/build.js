@@ -13,6 +13,11 @@ const AUTHOR = {
   name: 'Farid Nasri',
   credentials: 'ACA, Chartered Accountant',
 };
+// Social profiles: shown in every page footer and given to search engines (schema "sameAs").
+const SOCIAL = [
+  { name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61594854459995' },
+  { name: 'LinkedIn', url: 'https://www.linkedin.com/company/129244179/' },
+];
 const HOME_DESCRIPTION =
   'ICAEW regulated Chartered Accountants in Southampton offering bookkeeping, accounts, tax and advisory services for individuals and businesses.';
 
@@ -147,6 +152,7 @@ if (!/name="description"/i.test(home)) {
         url: `${SITE_URL}/`,
         description: HOME_DESCRIPTION,
         founder: { '@type': 'Person', name: AUTHOR.name },
+        sameAs: SOCIAL.map(s => s.url),
         address: { '@type': 'PostalAddress', addressLocality: 'Southampton', addressCountry: 'GB' },
       }) +
       '\n</head>'
@@ -226,7 +232,7 @@ for (const p of posts) {
       mainEntityOfPage: canonical,
       image,
       author: { '@type': 'Person', name: AUTHOR.name, jobTitle: 'Chartered Accountant', url: `${SITE_URL}/#about` },
-      publisher: { '@type': 'Organization', name: SITE_NAME, url: `${SITE_URL}/`, logo: { '@type': 'ImageObject', url: `${SITE_URL}/PHOTO-2026-06-11-18-07-32.jpg` } },
+      publisher: { '@type': 'Organization', name: SITE_NAME, url: `${SITE_URL}/`, logo: { '@type': 'ImageObject', url: `${SITE_URL}/PHOTO-2026-06-11-18-07-32.jpg` }, sameAs: SOCIAL.map(s => s.url) },
     },
   ];
   if (faqs.length) {
@@ -339,3 +345,21 @@ fs.writeFileSync(
   JSON.stringify({ host: new URL(SITE_URL).host, key: INDEXNOW_KEY, keyLocation: `${SITE_URL}/${INDEXNOW_KEY}.txt`, urlList: pingUrls }, null, 2)
 );
 console.log(pingUrls.length ? `IndexNow: ${pingUrls.length} URL(s) queued` : 'IndexNow: no new or updated posts to submit');
+
+// Add "Follow us" social links to the footer of every page (homepage and blog).
+function addSocialFooter(file) {
+  let html = fs.readFileSync(file, 'utf8');
+  if (!SOCIAL.length || html.includes('class="social-links"') || !/<\/footer>/i.test(html)) return;
+  const links = SOCIAL.map(s =>
+    `<a href="${s.url}" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;font-family:'Raleway',sans-serif;font-size:0.8rem;letter-spacing:0.08em;text-transform:uppercase;margin:0 0.75rem;">Follow us on ${esc(s.name)} &rarr;</a>`
+  ).join('');
+  html = html.replace(/<\/footer>/i, `  <div class="social-links" style="margin-top:1rem;">${links}</div>\n</footer>`);
+  fs.writeFileSync(file, html);
+}
+(function walk(dir) {
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) { if (entry.name !== 'admin') walk(full); }
+    else if (entry.name.endsWith('.html')) addSocialFooter(full);
+  }
+})(OUT);
