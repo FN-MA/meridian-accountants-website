@@ -154,6 +154,7 @@ if (!/name="description"/i.test(home)) {
         founder: { '@type': 'Person', name: AUTHOR.name },
         sameAs: SOCIAL.map(s => s.url),
         address: { '@type': 'PostalAddress', addressLocality: 'Southampton', addressCountry: 'GB' },
+        areaServed: ['Southampton', 'Romsey', 'Winchester', 'New Forest', 'Totton'].map(name => ({ '@type': 'Place', name })),
       }) +
       '\n</head>'
   );
