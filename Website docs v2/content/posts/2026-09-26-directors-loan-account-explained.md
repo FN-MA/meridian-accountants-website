@@ -1,6 +1,7 @@
 ---
 title: "Director's Loan Account Explained: s455 Tax, Interest and Benefit in Kind (2026/27)"
 date: 2026-09-26
+updated: 2026-10-03
 excerpt: "How to take your investment back tax free, avoid s455 tax, handle interest and benefit in kind, and what ends up in your public accounts."
 description: "How director's loan accounts work: tax-free repayments, s455 tax at 35.75%, interest and benefit in kind, and what is shown in your accounts."
 ---
@@ -147,6 +148,6 @@ Yes. Micro-entity accounts don't include full notes, but advances to directors m
 - Loans over £10,000 either carry interest or create a benefit in kind.
 - Director loans appear in your public accounts.
 
-Need help with your director's loan account? Meridian Accountants, Chartered Accountants in Southampton, works with owner-managed companies locally and across the UK. We can review your DLA, plan the most tax-efficient way to clear it and keep your records in order. [Get in touch](/#contact) to book a call.
+Need help with your director's loan account? Meridian Accountants, Chartered Accountants based in Southampton, works with owner-managed companies across Southampton, Romsey, Winchester, the New Forest, Totton and surrounding areas. We can review your DLA, plan the most tax-efficient way to clear it and keep your records in order. [Get in touch](/#contact) to book a call.
 
 *This article is general information based on the rules in force for the 2026/27 tax year. It is not advice on your specific circumstances. Please speak to an accountant before acting.*
