@@ -18,12 +18,25 @@ const SOCIAL = [
   { name: 'Facebook', url: 'https://www.facebook.com/profile.php?id=61594854459995' },
   { name: 'LinkedIn', url: 'https://www.linkedin.com/company/129244179/' },
 ];
+const HOME_TITLE = 'Chartered Accountants in Southampton & the New Forest | Meridian Accountants';
+const BUSINESS = {
+  telephone: '+447401248669',
+  telephoneDisplay: '+44 (0) 74012 48669',
+  email: 'fn@meridian-accountants.com',
+  streetAddress: 'Flat 20 Seafarers Court, 12–14 Queens Terrace',
+  postalCode: 'SO14 3SG',
+  locality: 'Southampton',
+  region: 'Hampshire',
+  logo: '/PHOTO-2026-06-11-18-07-32.jpg',
+  areas: ['Southampton', 'Romsey', 'Winchester', 'New Forest', 'Totton'],
+};
 const HOME_DESCRIPTION =
   'ICAEW regulated Chartered Accountants in Southampton offering bookkeeping, accounts, tax and advisory services for individuals and businesses.';
 
 const ROOT = __dirname;
 const OUT = path.join(ROOT, 'dist');
 const POSTS_DIR = path.join(ROOT, 'content', 'posts');
+const SERVICES_DIR = path.join(ROOT, 'content', 'services');
 const SKIP = new Set(['Website docs v2', 'plugins', '.indexnow.json', 'dist', 'node_modules', 'content', 'build.js', 'package.json', 'package-lock.json', 'netlify.toml', '.git']);
 
 // ---------- helpers ----------
@@ -133,6 +146,68 @@ const posts = fs.existsSync(POSTS_DIR)
       .sort((a, b) => new Date(b.date) - new Date(a.date))
   : [];
 
+// ---------- load service pages ----------
+
+const services = fs.existsSync(SERVICES_DIR)
+  ? fs.readdirSync(SERVICES_DIR)
+      .filter(f => f.endsWith('.md'))
+      .map(file => {
+        const raw = fs.readFileSync(path.join(SERVICES_DIR, file), 'utf8');
+        const { data, body } = parseFrontmatter(raw);
+        const slug = file.replace(/\.md$/, '');
+        const html = marked.parse(body);
+        return {
+          slug,
+          url: `/services/${slug}/`,
+          title: data.title || slug,
+          heading: data.heading || data.title || slug,
+          description: data.description || data.excerpt || stripHtml(html).slice(0, 155),
+          excerpt: data.excerpt || '',
+          cards: (data.cards || '').split(',').map(c => c.trim()).filter(Boolean),
+          order: Number(data.order || 99),
+          updated: data.updated || '',
+          html,
+        };
+      })
+      .sort((a, b) => a.order - b.order)
+  : [];
+
+function businessSchema() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'AccountingService',
+    '@id': `${SITE_URL}/#business`,
+    name: SITE_NAME,
+    url: `${SITE_URL}/`,
+    description: HOME_DESCRIPTION,
+    telephone: BUSINESS.telephone,
+    email: BUSINESS.email,
+    logo: `${SITE_URL}${BUSINESS.logo}`,
+    image: `${SITE_URL}${BUSINESS.logo}`,
+    founder: { '@type': 'Person', name: AUTHOR.name, jobTitle: 'Chartered Accountant' },
+    sameAs: SOCIAL.map(s => s.url),
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: BUSINESS.streetAddress,
+      addressLocality: BUSINESS.locality,
+      addressRegion: BUSINESS.region,
+      postalCode: BUSINESS.postalCode,
+      addressCountry: 'GB',
+    },
+    areaServed: BUSINESS.areas.map(name => ({ '@type': 'Place', name })),
+    hasOfferCatalog: services.length
+      ? {
+          '@type': 'OfferCatalog',
+          name: 'Accounting services',
+          itemListElement: services.map(s => ({
+            '@type': 'Offer',
+            itemOffered: { '@type': 'Service', name: s.heading, url: `${SITE_URL}${s.url}` },
+          })),
+        }
+      : undefined,
+  };
+}
+
 // ---------- build ----------
 
 fs.rmSync(OUT, { recursive: true, force: true });
@@ -145,21 +220,51 @@ if (!/name="description"/i.test(home)) {
   home = home.replace(
     /<\/head>/i,
     `  <meta name="description" content="${esc(HOME_DESCRIPTION)}" />\n  <link rel="canonical" href="${SITE_URL}/" />\n` +
-      jsonLd({
-        '@context': 'https://schema.org',
-        '@type': 'AccountingService',
-        name: SITE_NAME,
-        url: `${SITE_URL}/`,
-        description: HOME_DESCRIPTION,
-        founder: { '@type': 'Person', name: AUTHOR.name },
-        sameAs: SOCIAL.map(s => s.url),
-        address: { '@type': 'PostalAddress', addressLocality: 'Southampton', addressCountry: 'GB' },
-        areaServed: ['Southampton', 'Romsey', 'Winchester', 'New Forest', 'Totton'].map(name => ({ '@type': 'Place', name })),
-      }) +
+      `  <meta property="og:type" content="website" />\n` +
+      `  <meta property="og:title" content="${esc(HOME_TITLE)}" />\n` +
+      `  <meta property="og:description" content="${esc(HOME_DESCRIPTION)}" />\n` +
+      `  <meta property="og:url" content="${SITE_URL}/" />\n` +
+      `  <meta property="og:image" content="${SITE_URL}${BUSINESS.logo}" />\n` +
+      `  <meta property="og:site_name" content="${SITE_NAME}" />\n` +
+      `  <meta name="twitter:card" content="summary_large_image" />\n` +
+      jsonLd(businessSchema()) +
       '\n</head>'
   );
   fs.writeFileSync(homePath, home);
 }
+
+// Home page: search-friendly title, clickable phone and email, and links from the service cards.
+home = home.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(HOME_TITLE)}</title>`);
+home = home.replace(
+  /(<strong>Phone<\/strong>\s*)\+44 \(0\) 74012 48669/,
+  `$1<a href="tel:${BUSINESS.telephone}" style="color:inherit;">${BUSINESS.telephoneDisplay}</a>`
+);
+home = home.replace(
+  /(<strong>Email<\/strong>\s*)fn@meridian-accountants\.com/,
+  `$1<a href="mailto:${BUSINESS.email}" style="color:inherit;">${BUSINESS.email}</a>`
+);
+for (const s of services) {
+  for (const card of s.cards) {
+    const re = new RegExp(`(<h3>${card.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}<\/h3>\\s*<p>[\\s\\S]*?<\/p>)`);
+    home = home.replace(re, `$1\n        <a class="svc-more" href="${s.url}">Find out more &rarr;</a>`);
+  }
+}
+if (services.length && home.includes('<!-- CONTACT -->')) {
+  const links = services.map(s => `<a href="${s.url}">${esc(s.heading)}</a>`).join('<span aria-hidden="true"> &middot; </span>');
+  home = home.replace(
+    '<!-- CONTACT -->',
+    `<style>
+  .svc-more { display: inline-block; margin-top: 1rem; font-family: 'Raleway', sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-deep); text-decoration: none; }
+  .svc-more:hover { color: var(--gold); }
+  .svc-links { background: var(--cream-dark); padding: 0 5vw 56px; text-align: center; font-family: 'Raleway', sans-serif; font-size: 0.85rem; }
+  .svc-links a { color: var(--gold-deep); }
+</style>
+<div class="svc-links"><strong>Service guides:</strong> ${links}</div>
+
+<!-- CONTACT -->`
+  );
+}
+fs.writeFileSync(homePath, home);
 
 // Home page: "Latest from the blog" section with the 3 newest posts, placed straight after the hero.
 // It updates automatically whenever a post is added.
@@ -275,6 +380,76 @@ for (const p of posts) {
   const dir = path.join(OUT, 'blog', p.slug);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), page);
+  // Also serve the address without the trailing slash directly (no redirect). The canonical tag
+  // tells search engines the slash version is the main one.
+  fs.writeFileSync(path.join(OUT, 'blog', `${p.slug}.html`), page);
+}
+
+// Service pages at /services/<slug>/.
+for (const s of services) {
+  const canonical = `${SITE_URL}${s.url}`;
+  const faqs = extractFaqs(s.html);
+  const schema = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: s.heading,
+      description: s.description,
+      url: canonical,
+      serviceType: s.heading,
+      provider: { '@id': `${SITE_URL}/#business`, '@type': 'AccountingService', name: SITE_NAME, url: `${SITE_URL}/`, telephone: BUSINESS.telephone },
+      areaServed: BUSINESS.areas.map(name => ({ '@type': 'Place', name })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/#services` },
+        { '@type': 'ListItem', position: 3, name: s.heading, item: canonical },
+      ],
+    },
+  ];
+  if (faqs.length) {
+    schema.push({
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+    });
+  }
+  const head = [
+    `  <meta name="description" content="${esc(s.description)}" />`,
+    `  <link rel="canonical" href="${canonical}" />`,
+    `  <meta property="og:type" content="website" />`,
+    `  <meta property="og:title" content="${esc(s.title)}" />`,
+    `  <meta property="og:description" content="${esc(s.description)}" />`,
+    `  <meta property="og:url" content="${canonical}" />`,
+    `  <meta property="og:image" content="${SITE_URL}${BUSINESS.logo}" />`,
+    `  <meta property="og:site_name" content="${SITE_NAME}" />`,
+    ...schema.map(x => '  ' + jsonLd(x)),
+  ].join('\n');
+  const others = services
+    .filter(o => o.slug !== s.slug)
+    .map(o => `<li><a href="${o.url}">${esc(o.heading)}</a></li>`)
+    .join('');
+  const article = `
+  <article>
+    <div class="post-date">Services</div>
+    <h1 class="post-title">${esc(s.heading)}</h1>
+    <p class="post-byline">${esc(AUTHOR.name)}, ${esc(AUTHOR.credentials)} &middot; <a href="tel:${BUSINESS.telephone}">${BUSINESS.telephoneDisplay}</a></p>
+    <div class="post-body">${s.html}
+      <h2>Our other services</h2>
+      <ul>${others}</ul>
+    </div>
+  </article>`;
+  let page = setHead(postTemplate, head, s.title);
+  page = page.replace(/<div id="post-content">[\s\S]*?<\/div>/i, article);
+  page = page.replace(/<a class="back-link" href="\/blog\/">[^<]*<\/a>/i, '<a class="back-link" href="/#services">&larr; All Services</a>');
+  page = page.replace(/(<a href="\/blog\/") class="active"/, '$1');
+  const dir = path.join(OUT, 'services', s.slug);
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(path.join(dir, 'index.html'), page);
+  fs.writeFileSync(path.join(OUT, 'services', `${s.slug}.html`), page);
 }
 
 // Blog listing page.
@@ -311,6 +486,7 @@ const today = new Date().toISOString().slice(0, 10);
 const urls = [
   { loc: `${SITE_URL}/`, lastmod: today },
   { loc: `${SITE_URL}/blog/`, lastmod: posts[0] ? isoDate(posts[0].updated) : today },
+  ...services.map(s => ({ loc: `${SITE_URL}${s.url}`, lastmod: s.updated ? isoDate(s.updated) : '' })),
   ...posts.map(p => ({ loc: `${SITE_URL}${p.url}`, lastmod: isoDate(p.updated) })),
 ];
 fs.writeFileSync(
@@ -324,7 +500,8 @@ fs.writeFileSync(
   `User-agent: *\nAllow: /\nDisallow: /admin/\n\nSitemap: ${SITE_URL}/sitemap.xml\n`
 );
 
-console.log(`Built ${posts.length} post(s) into dist/`);
+console.log(`Built ${posts.length} post(s) and ${services.length} service page(s) into dist/`);
+services.forEach(s => console.log(`  ${s.url}`));
 posts.forEach(p => console.log(`  ${p.url}`));
 
 // IndexNow: tells Bing (and Copilot, ChatGPT search, Yandex, etc.) about new or updated pages.
@@ -338,8 +515,12 @@ const recent = posts.filter(p => {
   const t = new Date(p.updated || p.date).getTime();
   return !isNaN(t) && t >= cutoff;
 });
-const pingUrls = recent.length
-  ? [`${SITE_URL}/`, `${SITE_URL}/blog/`, ...recent.map(p => `${SITE_URL}${p.url}`)]
+const recentServices = services.filter(s => {
+  const t = new Date(s.updated).getTime();
+  return !isNaN(t) && t >= cutoff;
+});
+const pingUrls = recent.length || recentServices.length
+  ? [`${SITE_URL}/`, `${SITE_URL}/blog/`, ...recent.map(p => `${SITE_URL}${p.url}`), ...recentServices.map(s => `${SITE_URL}${s.url}`)]
   : [];
 fs.writeFileSync(
   path.join(ROOT, '.indexnow.json'),
