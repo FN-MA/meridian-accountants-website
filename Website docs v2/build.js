@@ -380,9 +380,6 @@ for (const p of posts) {
   const dir = path.join(OUT, 'blog', p.slug);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), page);
-  // Also serve the address without the trailing slash directly (no redirect). The canonical tag
-  // tells search engines the slash version is the main one.
-  fs.writeFileSync(path.join(OUT, 'blog', `${p.slug}.html`), page);
 }
 
 // Service pages at /services/<slug>/.
@@ -449,7 +446,6 @@ for (const s of services) {
   const dir = path.join(OUT, 'services', s.slug);
   fs.mkdirSync(dir, { recursive: true });
   fs.writeFileSync(path.join(dir, 'index.html'), page);
-  fs.writeFileSync(path.join(OUT, 'services', `${s.slug}.html`), page);
 }
 
 // Blog listing page.
@@ -474,6 +470,9 @@ let list = setHead(
 );
 list = list.replace(/<div id="post-list">[\s\S]*?<\/div>/i, `<div id="post-list">${cards}\n  </div>`);
 fs.writeFileSync(path.join(OUT, 'blog', 'index.html'), list);
+
+// Note: no <slug>.html copies are written. On Netlify a /x.html file makes /x/ redirect to /x,
+// which clashes with the trailing-slash canonical URLs (Search Console: "Page with redirect").
 
 // Old ?slug= links keep working: redirect them to the new clean addresses.
 fs.rmSync(path.join(OUT, 'blog', 'post.html'), { force: true });
