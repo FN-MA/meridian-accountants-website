@@ -88,7 +88,7 @@ A few rules apply: the business must be run on a commercial basis with a view to
 - Your own Self Assessment return as well, if you take dividends above your allowances
 - Keeping company money separate from your own, with a business bank account and proper records
 
-**Higher accountancy fees.** Because there is more to prepare and file, fees are usually noticeably higher than for a sole trader. It costs £100 to set up a company online at Companies House, and every director now has to verify their identity. Meridian Accountants Limited is an Authorised Corporate Service Provider (ACSP), so we can complete identity verification and company set-up for our clients.
+**Higher accountancy fees.** Because there is more to prepare and file, fees are usually noticeably higher than for a sole trader. It costs £100 to set up a company online at Companies House, and every director now has to verify their identity. Meridian Accountants Limited is an Authorised Corporate Service Provider (ACSP), so we can complete identity verification and company set-up for our clients. See our [company formation service](https://meridian-accountants.com/services/company-formation/).
 
 **Your accounts are public.** Anyone can look up your company's accounts, directors and shareholders on Companies House. That said, small companies can file shortened accounts, usually just a balance sheet and a few notes, with no profit and loss account, so how much you earn isn't shown.
 
@@ -136,7 +136,7 @@ The company figures assume a £12,570 salary with the rest as dividends, and no 
 
 ## How to switch from sole trader to limited company
 
-1. **Set up the company** at Companies House and open a business bank account.
+1. **Set up the company** at Companies House and open a business bank account. Our [company formation service](https://meridian-accountants.com/services/company-formation/) can handle this for you.
 2. **Transfer the business.** That covers equipment, stock, contracts, customers and goodwill. Done properly, reliefs are usually available so that no capital gains tax is due.
 3. **Tell HMRC** that you have stopped trading as a sole trader. You will file one final Self Assessment return for the business after the end of the tax year in which your sole trader income stops. For example, if you stop in December 2026, your final return covers 2026/27 and is filed after 5 April 2027 (due by 31 January 2028).
 4. **Update VAT, payroll, insurance, contracts and your invoices** to the company's name and details.
@@ -176,6 +176,6 @@ Yes. Many people start as a sole trader and incorporate once the business is est
 - Think about a limited company once profits are reliable and you don't need them all, or when limited liability and credibility matter.
 - The right answer depends on your whole financial picture, not just the business.
 
-Not sure which is right for you? Meridian Accountants, Chartered Accountants in Southampton, working with individuals and businesses across Southampton, Romsey, Winchester, the New Forest, Totton and surrounding areas, can run the numbers on your own figures, and help you register as a sole trader or set up and run your limited company. [Get in touch](/#contact) to book a call.
+Not sure which is right for you? Meridian Accountants, Chartered Accountants in Southampton, working with individuals and businesses across Southampton, Romsey, Winchester, the New Forest, Totton and surrounding areas, can run the numbers on your own figures, and help you register as a sole trader or set up and run your limited company. See our services for [company formation](https://meridian-accountants.com/services/company-formation/), [limited company accounts](https://meridian-accountants.com/services/limited-company-accounts/) and [Self Assessment tax returns](https://meridian-accountants.com/services/self-assessment-tax-returns/), or [get in touch](/#contact) to book a call.
 
 *This article is general information based on the rules for the 2026/27 tax year in England, Wales and Northern Ireland. It is not advice on your specific circumstances. Please speak to an accountant before acting.*

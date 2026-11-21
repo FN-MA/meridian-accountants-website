@@ -152,7 +152,7 @@ Under the tipping law, both must be passed on to workers in full. For VAT, an op
 - Get ready to consult staff and review the policy every 3 years once the new rules start in late 2026.
 - Choose how tips are paid out with tax in mind: an independent tronc can save National Insurance for the business and its staff.
 
-Need help with tips, troncs or payroll? Meridian Accountants, Chartered Accountants based in Southampton, works with restaurants, cafés and hotels across Southampton, Romsey, Winchester, the New Forest, Totton and surrounding areas. We can review your tipping arrangements, set up a tronc PAYE scheme and run your payroll. [Get in touch](/#contact) to book a call.
+Need help with tips, troncs or payroll? Meridian Accountants, Chartered Accountants based in Southampton, works with restaurants, cafés and hotels across Southampton, Romsey, Winchester, the New Forest, Totton and surrounding areas. We can review your tipping arrangements, set up a tronc PAYE scheme and run your payroll. See our [accountants for restaurants, cafés and hotels](https://meridian-accountants.com/services/hospitality-accountants/) page, or [get in touch](/#contact) to book a call.
 
 *This article is general information based on the rules for the 2026/27 tax year in England, Wales and Northern Ireland, and on the draft Code of Practice as at October 2026. It is not advice on your specific circumstances. Please speak to an accountant before acting.*
 

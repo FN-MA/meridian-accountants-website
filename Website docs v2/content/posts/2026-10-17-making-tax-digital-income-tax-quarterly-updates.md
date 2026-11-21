@@ -118,7 +118,7 @@ No. MTD for Income Tax is for individuals who are sole traders or landlords. Div
 
 Not sure whether MTD affects you? Our guide to [sole trader vs limited company](https://meridian-accountants.com/blog/sole-trader-vs-limited-company/) covers the wider choice of how to run your business.
 
-Need help with Making Tax Digital? Meridian Accountants, Chartered Accountants based in Southampton, works with sole traders and landlords across Southampton, Romsey, Winchester, the New Forest, Totton and surrounding areas. We can check whether MTD applies to you, set up your software and send your quarterly updates for you. [Get in touch](/#contact) to book a call.
+Need help with Making Tax Digital? Meridian Accountants, Chartered Accountants based in Southampton, works with sole traders and landlords across Southampton, Romsey, Winchester, the New Forest, Totton and surrounding areas. We can check whether MTD applies to you, set up your software and send your quarterly updates for you. See our [Self Assessment and Making Tax Digital service](https://meridian-accountants.com/services/self-assessment-tax-returns/), or [get in touch](/#contact) to book a call.
 
 *This article is general information based on HMRC guidance for the 2026/27 tax year as at October 2026. It is not advice on your specific circumstances. Please speak to an accountant before acting.*
 
