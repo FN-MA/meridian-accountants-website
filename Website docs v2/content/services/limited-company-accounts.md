@@ -46,6 +46,7 @@ We keep track of these for you and send reminders well before each one.
 
 - [Director's loan account explained](https://meridian-accountants.com/blog/directors-loan-account-explained/)
 - [Sole trader vs limited company: which is right for you?](https://meridian-accountants.com/blog/sole-trader-vs-limited-company/)
+- Setting up a new company? See our [company formation service](https://meridian-accountants.com/services/company-formation/)
 
 ## Frequently asked questions
 
